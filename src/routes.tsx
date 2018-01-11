@@ -66,6 +66,7 @@ import CampCountDown from './modules/schedule/CampCountDown'
 import AnnualSummary from './modules/promotion/annualsummary/AnnualSummary'
 import GroupPromotionCountDown from './modules/promotion/grouplearning/GroupPromotionCountDown'
 import SendCard from './modules/customer/card/experience/SendCard'
+import AsstContract from './modules/temp/AsstContract'
 
 const routes = (
   <Route>
@@ -160,6 +161,7 @@ const routes = (
       {/*团队学习倒计时页面*/}
       <Route path="group/promotion/count/down" component={GroupPromotionCountDown}/>
       <Route path="guest/annual/summary" component={AnnualSummary}/>
+      <Route path="/test" component={AsstContract}/>
     </Route>
   </Route>
 )

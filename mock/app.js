@@ -1,6 +1,6 @@
-var express = require("express")
-var bodyParser = require("body-parser")
-var path = require("path");
+var express = require('express')
+var bodyParser = require('body-parser')
+var path = require('path')
 
 var app = express()
 
@@ -8,14 +8,14 @@ var app = express()
 // 可以解析 request payload, 即 res.body
 app.use(bodyParser.json())
 
-app.get("/test", function (req, res) {
-	res.status(200).json({
-		"msg": "ok"
-	})
+app.get('/test', function (req, res) {
+  res.status(200).json({
+    'msg': 'ok'
+  })
 })
 
-app.use("/assets/", express.static(path.join(__dirname, "../assets")))
-app.use("/js/", express.static(path.join(__dirname, "../js")))
+app.use('/assets/', express.static(path.join(__dirname, '../assets')))
+app.use('/js/', express.static(path.join(__dirname, '../js')))
 
 // API
 app.use(require('./common/router'))
@@ -28,5 +28,6 @@ app.use(require('./forum/router'))
 app.use(require('./operation/router'))
 app.use(require('./bible/router'))
 app.use(require('./schedule/router'))
+app.use(require('./temp/router'))
 
 module.exports = app
