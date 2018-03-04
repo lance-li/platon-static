@@ -66,6 +66,7 @@ import GroupPromotionCountDown from './modules/promotion/grouplearning/GroupProm
 import SendCard from './modules/customer/card/experience/SendCard'
 import SelfEvaluate from './modules/evaluation/self/SelfEvaluate'
 import OtherEvaluate from './modules/evaluation/other/OtherEvaluate'
+import { VideoCourse } from './modules/video/VideoCourse'
 
 const routes = (
   <Route>
@@ -166,6 +167,7 @@ const routes = (
       <Route path="guest/annual/summary" component={AnnualSummary}/>
       <Route path="/rise/static/guest/value/evaluation/self" component={SelfEvaluate}/>
       <Route path="/rise/static/guest/value/evaluation/other" component={OtherEvaluate}/>
+      <Route path="video/course" component={VideoCourse}/>
     </Route>
   </Route>
 )
