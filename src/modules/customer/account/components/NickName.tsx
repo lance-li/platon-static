@@ -6,7 +6,7 @@ import { MarkBlock } from '../../../../components/markblock/MarkBlock'
 /**
  * 修改昵称页面
  */
-export class NickName extends React.Component {
+export default class NickName extends React.Component {
 
   constructor() {
     super()

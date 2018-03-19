@@ -2,7 +2,7 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { isPending, fixIosShimoBug } from 'utils/helpers'
 import { Toast, Dialog } from 'react-weui'
-import { set, alertMsg } from 'redux/actions'
+import { set, alertMsg } from 'reduxutil/actions'
 import { config } from '../helpers/JsConfig'
 import AssetImg from '../../components/AssetImg'
 

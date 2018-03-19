@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { set, startLoad, endLoad, alertMsg } from 'redux/actions'
+import { set, startLoad, endLoad, alertMsg } from 'reduxutil/actions'
 import { mark } from 'utils/request'
 import { changeTitle, unScrollToBorder } from 'utils/helpers'
 import './Account.less'

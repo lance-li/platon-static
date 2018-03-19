@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import './ImprovementReport.less'
-import { startLoad, endLoad, alertMsg } from "redux/actions";
+import { startLoad, endLoad, alertMsg } from "reduxutil/actions";
 import { queryReport } from './async'
 import { mark } from 'utils/request'
 import { Modal } from '../../components/Modal'

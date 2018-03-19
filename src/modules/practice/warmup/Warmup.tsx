@@ -7,7 +7,7 @@ import {
   consolidationStatus,
   loadWarmUpDiscuss,
   discuss,
-  deleteComment
+  deleteComment,
 } from './async'
 import _ from 'lodash'
 import { startLoad, endLoad, alertMsg, set } from '../../../redux/actions'
@@ -18,6 +18,7 @@ import Discuss from '../components/Discuss'
 import DiscussShow from '../components/DiscussShow'
 import SubDiscussShow from '../components/SubDiscussShow'
 import AssetImg from '../../../components/AssetImg'
+import './Main.less'
 
 var $ = require('jquery')
 
@@ -28,7 +29,7 @@ const sequenceMap = {
   3: 'D',
   4: 'E',
   5: 'F',
-  6: 'G'
+  6: 'G',
 }
 
 const WARMUP_AUTO_SAVING = 'rise_warmup_autosaving'
@@ -53,27 +54,24 @@ export default class Warumup extends React.Component<any, any> {
       submit: false,
       openStatus: {},
       data: {},
-      moveDiscussArea: false
+      moveDiscussArea: false,
     }
   }
 
   // 重新加载开关，只能加载一次
   reloadSwitch = true
-  moveSnipperTimer
 
   static contextTypes = {
-    router: React.PropTypes.object.isRequired
+    router: React.PropTypes.object.isRequired,
   }
 
   componentWillMount () {
     mark({
       module: '打点',
       function: '学习',
-      action: '加载选择题页面'
+      action: '加载选择题页面',
     })
-
     this.loadWarmup()
-
     getOpenStatus().then(res => {
       if (res.code === 200) {
         this.setState({openStatus: res.msg})
@@ -81,30 +79,9 @@ export default class Warumup extends React.Component<any, any> {
     })
   }
 
-  componentDidMount () {
-    this.moveSnipperTimer = setInterval(() => {
-      this.touchMoveSnipper()
-    }, 100)
-  }
-
   componentWillUnmount () {
-    clearInterval(this.moveSnipperTimer)
     const {dispatch} = this.props
     dispatch(set('warmupCurrentIndex', undefined))
-  }
-
-  touchMoveSnipper () {
-    let node = document.getElementById('discuss-container')
-    if (node && window.scrollY + window.innerHeight - 100 < node.offsetTop) {
-      this.setState({
-        moveDiscussArea: false
-      })
-    }
-    if (node && window.scrollY + window.innerHeight - 100 > node.offsetTop) {
-      this.setState({
-        moveDiscussArea: true
-      })
-    }
   }
 
   //加载选择题
@@ -139,7 +116,7 @@ export default class Warumup extends React.Component<any, any> {
 
             this.setState({
               list: msg, practiceCount: msg.practice.length, currentIndex,
-              analysis: true, integrated, submit: false
+              analysis: true, integrated, submit: false,
             })
           } else {
             //做选择题
@@ -158,7 +135,7 @@ export default class Warumup extends React.Component<any, any> {
               }
               this.setState({
                 list: msg, practiceCount: msg.practice.length, currentIndex, selected,
-                analysis: false, integrated, submit: false
+                analysis: false, integrated, submit: false,
               })
             }
           }
@@ -274,7 +251,7 @@ export default class Warumup extends React.Component<any, any> {
         module: '打点',
         function: questionId,
         action: '做选择题',
-        memo: currentIndex
+        memo: currentIndex,
       })
       this.setChoice(p => {
         dispatch(startLoad())
@@ -293,11 +270,10 @@ export default class Warumup extends React.Component<any, any> {
                 size: 138,
                 startAngle: -Math.PI / 2,
                 fill: {
-                  gradient: ['#FF983F', '#FFC701']
-                }
+                  gradient: ['#FF983F', '#FFC701'],
+                },
               })
             })
-
           } else {
             dispatch(alertMsg(msg))
           }
@@ -321,7 +297,7 @@ export default class Warumup extends React.Component<any, any> {
       if (code === 200) {
         _.set(list, `practice.${currentIndex}.discussList`, msg)
         this.setState({
-          showDiscuss: false, list, content: '', placeholder: '解答同学的提问（限1000字）', repliedId: 0, isReply: false
+          showDiscuss: false, list, content: '', placeholder: '解答同学的提问（限1000字）', repliedId: 0, isReply: false,
         })
         scroll('.discuss', '.warm-up-container')
       }
@@ -337,7 +313,7 @@ export default class Warumup extends React.Component<any, any> {
     this.setState({
       showDiscuss: true, isReply: true,
       placeholder: '回复 ' + item.name + ':', content: '',
-      repliedId: item.id, referenceId: item.warmupPracticeId
+      repliedId: item.id, referenceId: item.warmupPracticeId,
     })
   }
 
@@ -411,7 +387,7 @@ export default class Warumup extends React.Component<any, any> {
   render () {
     const {
       list, currentIndex, selected, practiceCount, showDiscuss, isReply,
-      integrated, placeholder, openStatus, analysis, submit, data, moveDiscussArea
+      integrated, placeholder, openStatus, analysis, submit, data, moveDiscussArea,
     } = this.state
     const {openConsolidation = true} = openStatus
     const {total, rightNumber, point} = data
@@ -427,6 +403,7 @@ export default class Warumup extends React.Component<any, any> {
             {
               practiceCount !== 0 && currentIndex <= practiceCount - 1 && <div className="intro-index">
                 <span className="index">第{currentIndex + 1}/{practiceCount}题</span>
+                <span className="tip">正确选项可能不止一个</span>
                 <span className="type"><span className="number">{score}</span>分</span>
               </div>
             }
@@ -478,16 +455,14 @@ export default class Warumup extends React.Component<any, any> {
                   discussList.map((discuss, idx) => discussRender(discuss, idx))
                 }
                 {
-                  !_.isEmpty(discussList) ?
-                    <div className="show-more">
-                      你已经浏览完所有的讨论啦
-                    </div> :
-                    <div className="discuss-end">
-                      <div className="discuss-end-img">
-                        <AssetImg url="https://static.iqycamp.com/images/no_comment.png" width={94} height={92}/>
-                      </div>
-                      <span className="discuss-end-span">点击左侧按钮，发表第一个好问题吧</span>
+                  !_.isEmpty(discussList) ? <div className="show-more">
+                    你已经浏览完所有的讨论啦
+                  </div> : <div className="discuss-end">
+                    <div className="discuss-end-img">
+                      <AssetImg url="https://static.iqycamp.com/images/no_comment.png" width={94} height={92}/>
                     </div>
+                    <span className="discuss-end-span">点击左侧按钮，发表第一个好问题吧</span>
+                  </div>
                 }
               </div>
             </div>
@@ -560,15 +535,15 @@ export default class Warumup extends React.Component<any, any> {
                   this.prev()
                 },
                 className: `${currentIndex === 0 ? 'disable' : ''}`,
-                text: '上一题'
+                text: '上一题',
               },
               {
                 click: () => {
                   currentIndex + 1 < practiceCount ? this.next() : this.refs.sectionProgress.goSeriesPage(
                     SectionProgressStep.BASE_APPLICATION, dispatch)
                 },
-                text: '下一题'
-              }
+                text: '下一题',
+              },
             ]}/>
           )
         }
@@ -580,8 +555,8 @@ export default class Warumup extends React.Component<any, any> {
               click: () => {
                 currentIndex !== practiceCount - 1 ? this.next() : this.onSubmit()
               },
-              text: currentIndex !== practiceCount - 1 ? '下一题' : '提交'
-            }
+              text: currentIndex !== practiceCount - 1 ? '下一题' : '提交',
+            },
           ]}/>
         )
       }
@@ -595,13 +570,11 @@ export default class Warumup extends React.Component<any, any> {
                      onChange={(v) => this.onChange(v)} cancel={() => this.cancel()}/>
           )
         } else {
-          if (moveDiscussArea) {
-            return (
-              <div className="write-discuss" onClick={() => this.setState({showDiscuss: true})}>
-                <AssetImg url="https://static.iqycamp.com/images/discuss.png" width={45} height={45}/>
-              </div>
-            )
-          }
+          return (
+            <div className="write-discuss" onClick={() => this.setState({showDiscuss: true})}>
+              <AssetImg url="https://static.iqycamp.com/images/discuss.png" width={45} height={45}/>
+            </div>
+          )
         }
       }
     }

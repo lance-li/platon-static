@@ -1,91 +1,289 @@
 import * as React from 'react'
-import { config } from 'modules/helpers/JsConfig'
+import { config } from './modules/helpers/JsConfig'
 import { Route } from 'react-router'
 
-import Base from 'modules/base/Base'
-import StudyLine from 'modules/plan/StudyLine'
-import KnowledgeViewer from 'modules/practice/knowledge/KnowledgeViewer'
-import Application from 'modules/practice/application/Application'
-import Challenge from 'modules/practice/challenge/Challenge'
-import ReplyDiscussMessage from 'modules/message/ReplyWarmupDiscussMessage'
-import MessageCenter from 'modules/message/MessageCenter'
-import ReplyKnowledgeDiscussMessage from 'modules/message/ReplyKnowledgeDiscussMessage'
-import AnalysisNew from 'modules/practice/warmup/AnalysisNew'
-import ApplicationComment from 'modules/practice/application/Comment'
-import Subject from 'modules/practice/subject/Subject'
-import KnowledgeReview from 'modules/practice/knowledge/KnowledgeReview'
-import ReplyCommentMessage from 'modules/message/ReplyCommentMessage'
-import Customer from 'modules/customer/Customer'
-import Personal from 'modules/customer/Personal'
-import PointTip from 'modules/customer/PointTip'
-import Profile from 'modules/customer/Profile'
-import Account from 'modules/customer/account/Account'
-import ProblemGallery from 'modules/customer/ProblemGallery'
-import RiseMember from 'modules/customer/RiseMember'
-import FeedBack from 'modules/customer/FeedBack'
-import UserProtocol from 'modules/customer/UserProtocol'
-import MobileBind from 'modules/customer/MobileBind'
-import Coupon from 'modules/customer/Coupon'
-import EventWall from 'modules/plan/EventWall'
-import Explore from 'modules/problem/Explore'
-import MoreProblem from 'modules/problem/MoreProblem'
-import BannerArticle from 'modules/problem/BannerArticle'
-import ForumBase from './modules/forum/ForumBase'
-import Question from './modules/forum/question/Question'
-import QuestionAnswer from './modules/forum/question/QuestionAnswer'
-import AnswerComment from './modules/forum/question/AnswerComment'
-import SubmitQuestionInit from './modules/forum/question/SubmitQuestionInit'
-import SubmitQuestionDetail from './modules/forum/question/SubmitQuestionDetail'
-import ImprovementReport from 'modules/plan/ImprovementReport'
-import ProblemIntroduction from 'modules/practice/introduction/ProblemIntroduction'
-import ProblemExtension from './modules/practice/extension/ProblemExtension'
-import PlanList from 'modules/plan/PlanList'
-import WarmUpNew from 'modules/practice/warmup/Warmup'
-import ForumQuestion from 'modules/customer/ForumQuestion'
-import CardsCollection from './modules/problem/CardsCollection'
-import ReplyApplicationComment from './modules/message/ReplyApplicationComment'
-import Certificate from './modules/customer/certificate/Main'
-import CertificateProfile from './modules/customer/certificate/Personal'
-import InterlocutionQuestion from './modules/interlocution/InterlocutionQuestion'
-import InterlocutionQuestionSubmit from './modules/interlocution/InterlocutionQuestionSubmit'
-import InterlocutionQuanAnswer from './modules/interlocution/InterlocutionQuanAnswer'
-import { NickName } from './modules/customer/account/components/NickName'
-import { HeadImage } from './modules/customer/account/components/HeadImage'
-import PersonalModify from './modules/customer/account/PersonalModify'
-import OverView from './modules/schedule/overview/OverView'
-import Transfer from './modules/schedule/overview/components/Transfer'
-import SchedulePlan from './modules/schedule/plan/SchedulePlan'
-import ScheduleNotice from './modules/schedule/ScheduleNotice'
-import ScheduleChoice from './modules/schedule/ScheduleChoice'
-import CountDown from './modules/schedule/CountDown'
-import ProblemNoPublish from './modules/schedule/nopublish/ProblemNoPublish'
-import MineCard from './modules/customer/card/MineCard'
-import CampCountDown from './modules/schedule/CampCountDown'
-import AnnualSummary from './modules/promotion/annualsummary/AnnualSummary'
-import GroupPromotionCountDown from './modules/promotion/grouplearning/GroupPromotionCountDown'
-import SendCard from './modules/customer/card/experience/SendCard'
-import SelfEvaluate from './modules/evaluation/self/SelfEvaluate'
-import OtherEvaluate from './modules/evaluation/other/OtherEvaluate'
+import Base from './modules/base/Base'
+import Loading from './Loading'
+import Loadable from 'react-loadable'
+
+const PlanList = Loadable({
+  loader: () => import('./modules/plan/PlanList'),
+  loading: Loading,
+})
+const Explore = Loadable({
+  loader: () => import('./modules/problem/Explore'),
+  loading: Loading,
+})
+const MoreProblem = Loadable({
+  loader: () => import('./modules/problem/MoreProblem'),
+  loading: Loading,
+})
+const BannerArticle = Loadable({
+  loader: () => import('./modules/problem/BannerArticle'),
+  loading: Loading,
+})
+const ProblemExtension = Loadable({
+  loader: () => import('./modules/practice/extension/ProblemExtension'),
+  loading: Loading,
+})
+const CardsCollection = Loadable({
+  loader: () => import('./modules/problem/CardsCollection'),
+  loading: Loading,
+})
+const ProblemIntroduction = Loadable({
+  loader: () => import('./modules/practice/introduction/ProblemIntroduction'),
+  loading: Loading,
+})
+const StudyLine = Loadable({
+  loader: () => import('./modules/plan/StudyLine'),
+  loading: Loading,
+})
+const ImprovementReport = Loadable({
+  loader: () => import('./modules/plan/ImprovementReport'),
+  loading: Loading,
+})
+const WarmUpNew = Loadable({
+  loader: () => import('./modules/practice/warmup/Warmup'),
+  loading: Loading,
+})
+const AnalysisNew = Loadable({
+  loader: () => import('./modules/practice/warmup/AnalysisNew'),
+  loading: Loading,
+})
+const Application = Loadable({
+  loader: () => import('./modules/practice/application/Application'),
+  loading: Loading,
+})
+const Challenge = Loadable({
+  loader: () => import('./modules/practice/challenge/Challenge'),
+  loading: Loading,
+})
+const ApplicationComment = Loadable({
+  loader: () => import('./modules/practice/application/Comment'),
+  loading: Loading,
+})
+const Subject = Loadable({
+  loader: () => import('./modules/practice/subject/Subject'),
+  loading: Loading,
+})
+const KnowledgeViewer = Loadable({
+  loader: () => import('./modules/practice/knowledge/KnowledgeViewer'),
+  loading: Loading,
+})
+const KnowledgeReview = Loadable({
+  loader: () => import('./modules/practice/knowledge/KnowledgeReview'),
+  loading: Loading,
+})
+const ReplyDiscussMessage = Loadable({
+  loader: () => import('./modules/message/ReplyWarmupDiscussMessage'),
+  loading: Loading,
+})
+const ReplyApplicationComment = Loadable({
+  loader: () => import('./modules/message/ReplyApplicationComment'),
+  loading: Loading,
+})
+const ReplyKnowledgeDiscussMessage = Loadable({
+  loader: () => import('./modules/message/ReplyKnowledgeDiscussMessage'),
+  loading: Loading,
+})
+const ReplyCommentMessage = Loadable({
+  loader: () => import('./modules/message/ReplyCommentMessage'),
+  loading: Loading,
+})
+const SendCard = Loadable({
+  loader: () => import('./modules/customer/card/experience/SendCard'),
+  loading: Loading,
+})
+const Customer = Loadable({
+  loader: () => import('./modules/customer/Customer'),
+  loading: Loading,
+})
+const Personal = Loadable({
+  loader: () => import('./modules/customer/Personal'),
+  loading: Loading,
+})
+const PersonalModify = Loadable({
+  loader: () => import('./modules/customer/account/PersonalModify'),
+  loading: Loading,
+})
+const Coupon = Loadable({
+  loader: () => import('./modules/customer/Coupon'),
+  loading: Loading,
+})
+const Profile = Loadable({
+  loader: () => import('./modules/customer/Profile'),
+  loading: Loading,
+})
+const Account = Loadable({
+  loader: () => import('./modules/customer/account/Account'),
+  loading: Loading,
+})
+const NickName = Loadable({
+  loader: () => import('./modules/customer/account/components/NickName'),
+  loading: Loading,
+})
+const HeadImage = Loadable({
+  loader: () => import('./modules/customer/account/components/HeadImage'),
+  loading: Loading,
+})
+const PointTip = Loadable({
+  loader: () => import('./modules/customer/PointTip'),
+  loading: Loading,
+})
+const ProblemGallery = Loadable({
+  loader: () => import('./modules/customer/ProblemGallery'),
+  loading: Loading,
+})
+const RiseMember = Loadable({
+  loader: () => import('./modules/customer/RiseMember'),
+  loading: Loading,
+})
+const FeedBack = Loadable({
+  loader: () => import('./modules/customer/FeedBack'),
+  loading: Loading,
+})
+const UserProtocol = Loadable({
+  loader: () => import('./modules/customer/UserProtocol'),
+  loading: Loading,
+})
+const MobileBind = Loadable({
+  loader: () => import('./modules/customer/MobileBind'),
+  loading: Loading,
+})
+const ForumQuestion = Loadable({
+  loader: () => import('./modules/customer/ForumQuestion'),
+  loading: Loading,
+})
+const CertificateProfile = Loadable({
+  loader: () => import('./modules/customer/certificate/Personal'),
+  loading: Loading,
+})
+const Certificate = Loadable({
+  loader: () => import('./modules/customer/certificate/Main'),
+  loading: Loading,
+})
+const MineCard = Loadable({
+  loader: () => import('./modules/customer/card/MineCard'),
+  loading: Loading,
+})
+const MessageCenter = Loadable({
+  loader: () => import('./modules/message/MessageCenter'),
+  loading: Loading,
+})
+const EventWall = Loadable({
+  loader: () => import('./modules/plan/EventWall'),
+  loading: Loading,
+})
+const ForumBase = Loadable({
+  loader: () => import('./modules/forum/ForumBase'),
+  loading: Loading,
+})
+const QuestionAnswer = Loadable({
+  loader: () => import('./modules/forum/question/QuestionAnswer'),
+  loading: Loading,
+})
+const AnswerComment = Loadable({
+  loader: () => import('./modules/forum/question/AnswerComment'),
+  loading: Loading,
+})
+const Question = Loadable({
+  loader: () => import('./modules/forum/question/Question'),
+  loading: Loading,
+})
+const SubmitQuestionInit = Loadable({
+  loader: () => import('./modules/forum/question/SubmitQuestionInit'),
+  loading: Loading,
+})
+const SubmitQuestionDetail = Loadable({
+  loader: () => import('./modules/forum/question/SubmitQuestionDetail'),
+  loading: Loading,
+})
+const InterlocutionQuestion = Loadable({
+  loader: () => import('./modules/interlocution/InterlocutionQuestion'),
+  loading: Loading,
+})
+const InterlocutionQuestionSubmit = Loadable({
+  loader: () => import('./modules/interlocution/InterlocutionQuestionSubmit'),
+  loading: Loading,
+})
+const InterlocutionQuanAnswer = Loadable({
+  loader: () => import('./modules/interlocution/InterlocutionQuanAnswer'),
+  loading: Loading,
+})
+const ScheduleNotice = Loadable({
+  loader: () => import('./modules/schedule/ScheduleNotice'),
+  loading: Loading,
+})
+const ScheduleChoice = Loadable({
+  loader: () => import('./modules/schedule/ScheduleChoice'),
+  loading: Loading,
+})
+const OverView = Loadable({
+  loader: () => import('./modules/schedule/overview/OverView'),
+  loading: Loading,
+})
+const SchedulePlan = Loadable({
+  loader: () => import('./modules/schedule/plan/SchedulePlan'),
+  loading: Loading,
+})
+const ProblemNoPublish = Loadable({
+  loader: () => import('./modules/schedule/nopublish/ProblemNoPublish'),
+  loading: Loading,
+})
+const Transfer = Loadable({
+  loader: () => import('./modules/schedule/overview/components/Transfer'),
+  loading: Loading,
+})
+const CountDown = Loadable({
+  loader: () => import('./modules/schedule/CountDown'),
+  loading: Loading,
+})
+const CampCountDown = Loadable({
+  loader: () => import('./modules/schedule/CampCountDown'),
+  loading: Loading,
+})
+const GroupPromotionCountDown = Loadable({
+  loader: () => import('./modules/promotion/grouplearning/GroupPromotionCountDown'),
+  loading: Loading,
+})
+const AnnualSummary = Loadable({
+  loader: () => import('./modules/promotion/annualsummary/AnnualSummary'),
+  loading: Loading,
+})
+const SelfEvaluate = Loadable({
+  loader: () => import('./modules/evaluation/self/SelfEvaluate'),
+  loading: Loading,
+})
+const OtherEvaluate = Loadable({
+  loader: () => import('./modules/evaluation/other/OtherEvaluate'),
+  loading: Loading,
+})
+const ProblemCardList = Loadable({
+  loader: () => import('./modules/customer/knowledgecards/ProblemCardList'),
+  loading: Loading,
+})
+const RichTextView = Loadable({
+  loader: () => import('./modules/other/richtext/RichTextView'),
+  loading: Loading,
+})
 import { VideoCourse } from './modules/video/VideoCourse'
 
 const routes = (
   <Route>
-    <Route path="/rise/static" component={Base}
-           onChange={(before, after) => {
-             config(['chooseWXPay'])
-             if (after.location.state && after.location.state.pageScrollY) {
-               setTimeout(() => {
-                 window.scrollTo(0, after.location.state.pageScrollY)
-               }, 1000)
-             } else {
-               window.scrollTo(0, 0)
-             }
-           }}>
-
-      <Route path="rise" component={PlanList}/>
-      <Route path="camp" component={PlanList}/>
-      <Route path="learn" component={PlanList}/>
-      <Route path="plan/main" component={PlanList}/>
+    <Route path="/rise/static" component={Base} onChange={(before, after) => {
+      config(['chooseWXPay'])
+      if (after.location.state && after.location.state.pageScrollY) {
+        setTimeout(() => {
+          window.scrollTo(0, after.location.state.pageScrollY)
+        }, 1000)
+      } else {
+        window.scrollTo(0, 0)
+      }
+    }}>
+      <Route path="rise" component={SchedulePlan}/>
+      <Route path="camp" component={SchedulePlan}/>
+      <Route path="learn" component={SchedulePlan}/>
+      <Route path="plan/main" component={SchedulePlan}/>
 
       <Route path="problem/explore" component={Explore}/>
       <Route path="problem/more" component={MoreProblem}/>
@@ -113,6 +311,8 @@ const routes = (
       <Route path="message/comment/reply" component={ReplyCommentMessage}/>
       <Route path="guest/card/send" component={SendCard}/>
 
+      <Route path="article" component={RichTextView}/>
+
       <Route path="customer" component={Customer}>
         <Route path="personal" component={Personal}/>
         <Route path="personal/modify" component={PersonalModify}/>
@@ -131,6 +331,7 @@ const routes = (
         <Route path="certificate/profile" component={CertificateProfile}/>
         <Route path="certificate" component={Certificate}/>
         <Route path="prize/card/list" component={MineCard}/>
+        <Route path="knowledge/card/list" component={ProblemCardList}/>
       </Route>
 
       <Route path="message" component={Customer}>
@@ -162,7 +363,7 @@ const routes = (
       <Route path="transfer" component={Transfer}/>
       <Route path="business/count/down" component={CountDown}/>
       <Route path="camp/count/down" component={CampCountDown}/>
-      {/*团队学习倒计时页面*/}
+      {/*/!*团队学习倒计时页面*!/*/}
       <Route path="group/promotion/count/down" component={GroupPromotionCountDown}/>
       <Route path="guest/annual/summary" component={AnnualSummary}/>
       <Route path="/rise/static/guest/value/evaluation/self" component={SelfEvaluate}/>

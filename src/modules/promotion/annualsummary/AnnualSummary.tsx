@@ -1,7 +1,7 @@
 import * as React from 'react'
 import './AnnualSummary.less'
 import { connect } from 'react-redux'
-import { startLoad, endLoad, alertMsg } from 'redux/actions'
+import { startLoad, endLoad, alertMsg } from 'reduxutil/actions'
 import { NextStepButton } from './components/NextStepButton'
 import { TwoStepButton } from './components/TwoStepButton'
 import { Step_Start } from './steps/Step_Start'

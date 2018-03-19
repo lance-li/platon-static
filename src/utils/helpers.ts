@@ -1,14 +1,9 @@
 import * as _ from 'lodash'
-
-// import UA from "ua-device"
+import DateTimeFormat = Intl.DateTimeFormat
 
 export function isPending(state, key): boolean {
   return _.get(state, '$view.$pending') ? _.get(state, '$view.$pending')[key] : false
 }
-
-// export function isIOS() {
-// 	return _.get(new UA(navigator.userAgent), 'os.name') === 'iOS'
-// }
 
 export function changeTitle(title) {
   document.title = title
@@ -57,9 +52,9 @@ function SectionToChinese(section) {
 
 export function scroll(target, container, delta) {
   if(document.querySelector(target)) {
-    let y = document.querySelector(target).offsetTop;
+    let y = document.querySelector(target).offsetTop
     if(!!delta) {
-      y = y + delta;
+      y = y + delta
     }
     if(document.querySelector(container)) {
       document.querySelector(container).scrollTop = y
@@ -70,7 +65,7 @@ export function scroll(target, container, delta) {
 export function scrollToHeight(target, height) {
   if(document.querySelector(target)) {
     let y = document.querySelector(target).offsetTop
-    window.scrollTo(0, y+height)
+    window.scrollTo(0, y + height)
   }
 }
 
@@ -258,15 +253,33 @@ export function randomStr(len) {
   return pwd
 }
 
-export function isDownGrade() {
-  return false
-}
-
 export function isAndroid() {
   return window.navigator.userAgent.indexOf('Android') > 0
 }
 
 export function isIos() {
   return window.navigator.userAgent.indexOf('iPhone') > 0 || window.navigator.userAgent.indexOf('iPad') > 0
+}
+
+export function formatDate(date, fmt) {
+  if(date instanceof Date) {
+    var o = {
+      'M+': date.getMonth() + 1, //月份
+      'd+': date.getDate(), //日
+      'h+': date.getHours(), //小时
+      'm+': date.getMinutes(), //分
+      's+': date.getSeconds(), //秒
+      'q+': Math.floor((date.getMonth() + 3) / 3), //季度
+      'S': date.getMilliseconds() //毫秒
+    }
+    if(/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
+    for(var k in o)
+      if(new RegExp('(' + k + ')').test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
+      }
+    return fmt
+  } else {
+    throw 'first param is not a date'
+  }
 }
 

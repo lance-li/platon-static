@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as _ from 'lodash';
 import './QuestionGroup.less'
-import { startLoad, endLoad, alertMsg, set } from 'redux/actions'
+import { startLoad, endLoad, alertMsg, set } from 'reduxutil/actions'
 import { pget, ppost, mark } from "utils/request"
 import { loadBusinessApplyQuestion, submitApply, sendValidCode, validSMSCode, submitSurvey, loadSurvey } from '../async';
 import DropDownList from '../../customer/components/DropDownList'

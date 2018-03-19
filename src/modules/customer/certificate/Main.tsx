@@ -2,7 +2,7 @@ import * as React from 'react'
 import './Main.less'
 import { connect } from 'react-redux'
 import { getCertificate } from './async'
-import { set, startLoad, endLoad, alertMsg } from 'redux/actions'
+import { set, startLoad, endLoad, alertMsg } from 'reduxutil/actions'
 import { changeTitle } from 'utils/helpers'
 import AssetImg from '../../../components/AssetImg'
 

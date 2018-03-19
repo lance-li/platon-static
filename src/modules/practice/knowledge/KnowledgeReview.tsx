@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import './KnowledgeReview.less'
-import { set, startLoad, endLoad, alertMsg } from 'redux/actions'
+import { set, startLoad, endLoad, alertMsg } from 'reduxutil/actions'
 import { mark } from '../../../utils/request'
 import { knowledgeReview, learnKnowledge } from './async'
 import { SectionProgressHeader, SectionProgressStep } from '../components/SectionProgressHeader'

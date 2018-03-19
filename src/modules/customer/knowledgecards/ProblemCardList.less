@@ -1,0 +1,48 @@
+.problem-card-list-container {
+  box-sizing: border-box;
+  background: #fff;
+  padding: 2rem;
+  .card-section {
+    position: relative;
+    background: #ffffff;
+    box-shadow: 0 3px 20px 4px rgba(222, 225, 240, 0.58);
+    border-radius: 4px;
+    height: 8rem;
+    margin-bottom: 2rem;
+    .card-name {
+      position: absolute;
+      top: 1.5rem;
+      left: 2rem;
+      font-size: 1.9rem;
+      color: #333333;
+    }
+    .card-abbreviation {
+      position: absolute;
+      font-size: 1.3rem;
+      color: #b6b7bd;
+      bottom: 1.5rem;
+      left: 2rem;
+    }
+    .card-count {
+      position: absolute;
+      top: 50%;
+      right: 2rem;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      color: #b6b7bd;
+      text-align: right;
+      height: 2rem;
+      &::before {
+        position: absolute;
+        height: 2rem;
+        line-height: 2rem;
+        left: -1.5rem;
+        top: -0.2rem;
+        content: "|";
+        font-size: 1.2rem;
+        color: #b6b7bd;
+        text-align: right;
+      }
+    }
+  }
+}

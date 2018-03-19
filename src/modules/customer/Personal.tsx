@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { set, startLoad, endLoad, alertMsg } from 'redux/actions'
+import { set, startLoad, endLoad, alertMsg } from 'reduxutil/actions'
 import { changeTitle } from 'utils/helpers'
 import { mark } from 'utils/request'
 import { getOldMsg, openNotifyStatus, closeNotifyStatus, getNotifyStatus } from '../message/async'

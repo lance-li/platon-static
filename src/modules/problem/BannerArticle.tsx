@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { startLoad, endLoad, alertMsg } from 'redux/actions'
+import { startLoad, endLoad, alertMsg } from 'reduxutil/actions'
 import ProblemItem from  './components/ProblemItem'
 import { isEqual, merge, set } from 'lodash'
 import { loadAllProblems } from './async'

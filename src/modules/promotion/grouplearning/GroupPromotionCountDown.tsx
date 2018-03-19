@@ -1,7 +1,7 @@
 import * as React from 'react'
 import './GroupPromotionCountDown.less'
 import { connect } from 'react-redux'
-import { startLoad, endLoad, alertMsg } from 'redux/actions'
+import { startLoad, endLoad, alertMsg } from 'reduxutil/actions'
 import { loadCampCountDown } from '../async'
 import { GroupPromotionWaiting } from './GroupPromotionWaiting'
 import AssetImg from '../../../components/AssetImg'

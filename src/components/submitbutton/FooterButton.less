@@ -18,25 +18,16 @@
     font-weight: bold;
   }
   &.two-buttons {
-    display: flex;
-    flex-direction: row;
-    font-weight: bold;
-    align-items: center;
-    align-content: space-between;
-    justify-content: center;
+    padding: .5rem 0;
+    width: 100%;
     .button {
-      border-radius: 2px;
-      width: 17rem;
-      height: 3.9rem;
-      line-height: 3.9rem;
-      font-size: 1.9rem;
+      display: inline-block;
       color: #fff;
-      &.disable {
-        background: #cccccc !important;
-      }
+      font-size: 1.9rem;
+      width: ~"calc(50% - 1rem)";
       &:first-of-type {
         background: #FDD338;
-        margin-right: 0.5rem;
+        margin-right: .5rem;
       }
       background: #ffB200;
     }

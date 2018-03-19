@@ -4,7 +4,7 @@ import { loadPlanSeries, loadPracticePlan } from './async'
 import _ from 'lodash'
 import { randomStr } from '../../../utils/helpers'
 import { MarkBlock } from '../../../components/markblock/MarkBlock'
-import { alertMsg } from 'redux/actions'
+import { alertMsg } from 'reduxutil/actions'
 
 interface SectionProgressHeaderProps {
   practicePlanId: string,
@@ -19,7 +19,6 @@ const SectionProgressStep = {
 }
 
 class SectionProgressHeader extends React.Component<SectionProgressHeaderProps, any> {
-
   constructor() {
     super()
     this.state = {
@@ -42,7 +41,7 @@ class SectionProgressHeader extends React.Component<SectionProgressHeaderProps, 
   componentWillMount() {
     const { practicePlanId } = this.props
 
-    if(practicePlanId){
+    if(practicePlanId) {
       loadPlanSeries(practicePlanId).then(res => {
         if(res.code === 200) {
           this.setState({
@@ -54,7 +53,7 @@ class SectionProgressHeader extends React.Component<SectionProgressHeaderProps, 
     }
   }
 
-  componentWillReceiveProps(nextProps){
+  componentWillReceiveProps(nextProps) {
     if(nextProps.currentIndex !== this.props.currentIndex) {
       this.componentWillMount()
     }
@@ -62,19 +61,20 @@ class SectionProgressHeader extends React.Component<SectionProgressHeaderProps, 
 
   goSeriesPage(index, dispatch) {
     const { progress } = this.state
+    console.log(this.state)
     const { planId, practicePlanId, practiceId, complete, type } = progress[index]
-
+    console.log('practicePlanId:' + practicePlanId)
     loadPracticePlan(practicePlanId).then(res => {
-      const {code, msg} = res
-      if(code === 200){
-        const {unlocked} = msg
-        if(!unlocked){
+      const { code, msg } = res
+      if(code === 200) {
+        const { unlocked } = msg
+        if(!unlocked) {
           dispatch(alertMsg('练习尚未解锁'))
           return
         }
 
         progress[index] = msg
-        this.setState({progress})
+        this.setState({ progress })
 
         let queryParam = {
           complete: complete,
@@ -83,12 +83,12 @@ class SectionProgressHeader extends React.Component<SectionProgressHeaderProps, 
         }
         switch(index) {
           case 0:
-            if(type === 31){
+            if(type === 31) {
               this.context.router.push({
                 pathname: '/rise/static/practice/knowledge',
                 query: queryParam
               })
-            }else if(type === 32){
+            } else if(type === 32) {
               this.context.router.push({
                 pathname: '/rise/static/practice/knowledge/review',
                 query: queryParam
@@ -120,7 +120,7 @@ class SectionProgressHeader extends React.Component<SectionProgressHeaderProps, 
           default:
             break
         }
-      }else{
+      } else {
         dispatch(alertMsg(msg))
       }
     }).catch(er => alertMsg(er))
@@ -140,7 +140,9 @@ class SectionProgressHeader extends React.Component<SectionProgressHeaderProps, 
           <div className="progress-title">{title}</div>
           <MarkBlock module={'打点'} func={'首页'} action={'返回学习首页'}
                      className={`goto-learn-page`}
-                     onClick={() => this.context.router.push({pathname:'/rise/static/plan/study', query:{planId}})}>
+                     onClick={() => this.context.router.push({
+                       pathname: '/rise/static/plan/study', query: { planId }
+                     })}>
             返回大纲
           </MarkBlock>
         </div>

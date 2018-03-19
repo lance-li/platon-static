@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { merge } from 'lodash'
-import { set, startLoad, endLoad, alertMsg } from 'redux/actions'
+import { set, startLoad, endLoad, alertMsg } from 'reduxutil/actions'
 import './MoreProblem.less'
 import { loadCatalog } from './async'
 import ProblemItem from './components/ProblemItem'

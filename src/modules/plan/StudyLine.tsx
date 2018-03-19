@@ -2,7 +2,7 @@ import * as React from 'react'
 import './StudyLine.less'
 import { connect } from 'react-redux'
 import { loadStudyline, gradeProblem, closePlan } from './async'
-import { startLoad, endLoad, alertMsg, set } from 'redux/actions'
+import { startLoad, endLoad, alertMsg, set } from 'reduxutil/actions'
 import { changeTitle, scroll } from '../../utils/helpers'
 import { merge } from 'lodash'
 import { mark } from '../../utils/request'
@@ -103,7 +103,6 @@ export default class StudyLine extends React.Component<any, any> {
     }
     this.learningContainer = ''
     changeTitle('课程学习')
-    this.moment = require('moment')
   }
 
   static contextTypes = {

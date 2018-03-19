@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { startLoad, endLoad, alertMsg, get, set } from 'redux/actions'
+import { startLoad, endLoad, alertMsg, get, set } from 'reduxutil/actions'
 import { connect } from 'react-redux'
 import { loadPersonalSchedule, updateCourseScheduleAll } from '../async'
 import { calcScheduleData } from './util'

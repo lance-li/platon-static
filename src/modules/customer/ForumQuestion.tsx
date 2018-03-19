@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import "./ForumQuestion.less";
-import { set, startLoad, endLoad, alertMsg } from "redux/actions"
+import { set, startLoad, endLoad, alertMsg } from "reduxutil/actions"
 import { loadMineQuestions, loadMineAnswers } from "./async";
 import SimpleQuestion from "../forum/commons/SimpleQuestion/SimpleQuestion"
 import { splitText, removeHtmlTags } from "../../utils/helpers"

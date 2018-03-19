@@ -1,7 +1,7 @@
 import * as React from 'react'
 import './EventWall.less'
 import { connect } from 'react-redux'
-import { set, startLoad, endLoad, alertMsg } from 'redux/actions'
+import { set, startLoad, endLoad, alertMsg } from 'reduxutil/actions'
 import { queryEventList } from './async'
 import { ToolBar } from '../base/ToolBar'
 import { changeTitle, goOtherWeb, unScrollToBorder } from '../../utils/helpers'

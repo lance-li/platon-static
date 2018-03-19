@@ -61,9 +61,9 @@ export default class KnowledgeViewer extends React.Component<any, any> {
     if(practicePlanId) {
       loadKnowledges(practicePlanId).then(res => {
         if(res.code === 200) {
-          this.setState({ knowledge: res.msg[ 0 ], referenceId: res.msg[ 0 ].id })
+          this.setState({ knowledge: res.msg[0], referenceId: res.msg[0].id })
           dispatch(endLoad())
-          loadDiscuss(res.msg[ 0 ].id, 1).then(res => {
+          loadDiscuss(res.msg[0].id, 1).then(res => {
             if(res.code === 200) {
               this.setState({ discuss: res.msg })
             }
@@ -217,7 +217,7 @@ export default class KnowledgeViewer extends React.Component<any, any> {
       return (
         <div key={id} className={`choice${choice.isRight ? ' right' : ''}`}>
           <span className={`index`}>
-            {sequenceMap[ idx ]}
+            {sequenceMap[idx]}
           </span>
           <span className={`subject`}>{subject}</span>
         </div>
@@ -225,7 +225,7 @@ export default class KnowledgeViewer extends React.Component<any, any> {
     }
 
     const rightAnswerRender = (choice, idx) => {
-      return (choice.isRight ? sequenceMap[ idx ] + ' ' : '')
+      return (choice.isRight ? sequenceMap[idx] + ' ' : '')
     }
 
     return (
@@ -252,11 +252,11 @@ export default class KnowledgeViewer extends React.Component<any, any> {
                   <AssetImg height={17} url="https://static.iqycamp.com/images/fragment/analysis3.png"/>
                 </div>
                 {analysisAudio &&
-                <div className="context-audio"><Audio url={analysisAudio} words={analysisAudioWords}/></div> }
+                <div className="context-audio"><Audio url={analysisAudio} words={analysisAudioWords}/></div>}
                 <div className="text">
                   <pre dangerouslySetInnerHTML={{ __html: analysis }}/>
                 </div>
-                {analysisPic && <div className="context-img"><img src={analysisPic}/></div> }
+                {analysisPic && <div className="context-img"><img src={analysisPic}/></div>}
               </div>
             }
             {
@@ -313,16 +313,16 @@ export default class KnowledgeViewer extends React.Component<any, any> {
                 }
               </div>
             }
-            { showTip && <div className="title-bar">问答</div> }
-            { showTip &&
+            {showTip && <div className="title-bar">问答</div>}
+            {showTip &&
             <div className="discuss">
               {
                 !_.isEmpty(discuss) &&
                 discuss.map(item => {
                   return (
                     <DiscussShow discuss={item} showLength={50} reply={() => {
-                        this.reply(item)
-                      }} onDelete={() => this.onDelete(item.id)}/>
+                      this.reply(item)
+                    }} onDelete={() => this.onDelete(item.id)}/>
                   )
                 })
               }
@@ -348,7 +348,7 @@ export default class KnowledgeViewer extends React.Component<any, any> {
             practicePlanId && !showDiscuss &&
             <FooterButton btnArray={[{
               click: () => this.handleClickGoWarmup(practicePlanId),
-              text: complete == 'true' ? '下一题':'学完了，下一题'
+              text: complete == 'true' ? '下一题' : '学完了，下一题'
             }]}/>
           }
           {
@@ -356,11 +356,11 @@ export default class KnowledgeViewer extends React.Component<any, any> {
             <Discuss isReply={isReply} placeholder={placeholder} limit={1000}
                      submit={() => this.onSubmit()}
                      onChange={(v) => this.onChange(v)}
-                     cancel={() => this.cancel()}/> }
-          { showTip && !showDiscuss &&
-            <div className="write-discuss" onClick={() => this.setState({ showDiscuss: true })}>
-              <AssetImg url="https://static.iqycamp.com/images/discuss.png" width={45} height={45}></AssetImg>
-            </div>
+                     cancel={() => this.cancel()}/>}
+          {showTip && !showDiscuss &&
+          <div className="write-discuss" onClick={() => this.setState({ showDiscuss: true })}>
+            <AssetImg url="https://static.iqycamp.com/images/discuss.png" width={45} height={45}></AssetImg>
+          </div>
           }
         </div>
       </Block>

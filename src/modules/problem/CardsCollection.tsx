@@ -1,7 +1,7 @@
 import * as React from 'react'
 import './CardsCollection.less'
 import { connect } from 'react-redux'
-import { startLoad, endLoad, alertMsg } from 'redux/actions'
+import { startLoad, endLoad, alertMsg } from 'reduxutil/actions'
 import AssetImg from '../../components/AssetImg'
 import { loadCardData, loadEssenceCard, loadProblemCards } from './async'
 import { mark } from '../../utils/request'

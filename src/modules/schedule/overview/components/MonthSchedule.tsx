@@ -1,11 +1,10 @@
 import * as React from 'react'
 import './MonthSchedule.less'
 import Sortable from 'sortablejs'
-import { startLoad, endLoad, alertMsg, set } from 'redux/actions'
+import { startLoad, endLoad, alertMsg, set } from 'reduxutil/actions'
 import { connect } from 'react-redux'
 import * as _ from 'lodash'
 import { updateSelected } from '../../async'
-import { isDownGrade } from '../../../../utils/helpers'
 import DropDownList from '../../../customer/components/DropDownList'
 
 interface MonthScheduleProps {

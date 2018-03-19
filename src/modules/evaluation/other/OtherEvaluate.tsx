@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { startLoad, endLoad, alertMsg, set } from 'redux/actions'
+import { startLoad, endLoad, alertMsg, set } from 'reduxutil/actions'
 import { OtherInit } from './OtherInit'
 import { OtherComplete } from './OtherComplete'
 import { QuestionGroup } from '../components/QuestionGroup'

@@ -2,7 +2,7 @@ import * as React from 'react'
 import './HeadImage.less'
 import { mark, ppost } from '../../../../utils/request'
 import { connect } from 'react-redux'
-import { startLoad, endLoad, alertMsg } from 'redux/actions'
+import { startLoad, endLoad, alertMsg } from 'reduxutil/actions'
 import { adjustImage } from '../../../../components/imageUtil/ImageUtil'
 import { MarkBlock } from '../../../../components/markblock/MarkBlock'
 
@@ -10,7 +10,7 @@ import { MarkBlock } from '../../../../components/markblock/MarkBlock'
  * 修改头像页面
  */
 @connect(state => state)
-export class HeadImage extends React.Component {
+export default class HeadImage extends React.Component {
 
   timer // 自动提交定时器
   dispatch // redux dispatch 对象

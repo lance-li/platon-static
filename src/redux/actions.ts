@@ -1,3 +1,8 @@
-import ActionFactory from "./ActionFactory"
+import ActionFactory from './ActionFactory'
 
-export default new ActionFactory().getActions()
+let actions = new ActionFactory().getActions()
+const { set, push, splice, start, end, open, close, startLoad, endLoad, alertMsg } = actions
+
+export {
+  set, push, splice, start, end, open, close, startLoad, endLoad, alertMsg
+}

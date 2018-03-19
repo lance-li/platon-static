@@ -10,7 +10,7 @@ import {
   Article
 } from 'react-weui'
 import './ToolBar.less'
-import { startLoad, endLoad, alertMsg, set } from 'redux/actions'
+import { startLoad, endLoad, alertMsg, set } from 'reduxutil/actions'
 import { loadOldCount } from '../message/async'
 
 var FastClick = require('fastclick')

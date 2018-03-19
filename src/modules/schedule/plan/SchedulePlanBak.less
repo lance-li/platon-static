@@ -1,0 +1,321 @@
+@import "../../../style/variable.less";
+
+.schedule-plan-container {
+  padding-bottom: 5.0rem;
+  > .monthly-topic {
+    font-size: 2.8rem;
+    line-height: 2.8rem;
+    padding: 0 1.5rem;
+    color: #000;
+    margin-top: 3.0rem;
+    font-weight: bold;
+  }
+  > .monthly-progress{
+    height: 1.8rem;
+    margin-top: 2.3rem;
+    position: relative;
+    .monthly-title{
+      padding: 0 1.5rem;
+      display: inline-block;
+      font-size: 1.9rem;
+      color: #000;
+      line-height: 1.9rem;
+      position: absolute;
+      font-weight: bold;
+    }
+    .today {
+      margin-left: 10.0rem;
+      display: inline-block;
+      opacity: 0.4;
+      font-size: 1.3rem;
+      color: #000;
+      line-height: 1.9rem;
+      position: absolute;
+    }
+  }
+  > .column-span{
+    height: .1rem;
+    background-color: #eee;
+  }
+  > .course-progress {
+    display: inline-block;
+    position: relative;
+    height: 85px;
+    width: 85px;
+    margin: 2.0rem 0;
+    &.course-minor{
+      margin-left: 6rem;
+      border-radius: 8rem;
+    }
+    &.course-major{
+      margin-left: 2.9rem;
+      border-radius: 8rem;
+    }
+    .progress-name {
+      font-size: 1.3rem;
+      position: absolute;
+      color: #999;
+      top: 2.0rem;
+      width: 85px;
+      text-align: center;
+    }
+    .progress-percent {
+      color: #000;
+      font-size: 1.9rem;
+      top: 3.8rem;
+      position: absolute;
+      width: 85px;
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+
+  > .modify-course-schedule {
+    font-size: 1.5rem;
+    color: #FFA700;
+    background: #EFEEEB;
+    border-radius: 100px;
+    width: 21rem;
+    height: 4.4rem;
+    line-height: 4.4rem;
+    text-align: center;
+    margin: 1.5rem auto;
+    font-weight: bold;
+  }
+  .card {
+    background-color: @color_white;
+    border-radius: @border-radius;
+    padding: 0 1.5rem;
+    > .empty-container {
+      padding-bottom: 3.0rem;
+      text-align: center;
+      > .empty-text {
+        font-size: @font_click;
+        color: @color_title;
+      }
+    }
+    > .course-category {
+      text-align: center;
+      > .category-line {
+        width: ~"calc(50% - 3.0rem)";
+        height: 1px;
+        display: inline-block;
+        vertical-align: middle;
+        background-color: #000;
+      }
+
+      > .category-title {
+        margin: 0 1.0rem;
+        width: 4.0rem;
+        display: inline-block;
+        font-size: @font_index;
+        line-height: @font_index;
+      }
+    }
+
+    > .course-container {
+      display: block;
+      position: relative;
+      .course-card {
+        display: inline-block;
+        position: relative;
+        width: ~"calc(50% - 0.5rem)";
+        &:nth-child(even) {
+          margin-left: 1.0rem;
+        }
+        height: 12.5rem;
+        .card-desc {
+          display: block;
+          position: absolute;
+          top: 11.5rem;
+          width: 100%;
+          > .problem-name {
+            margin-top: 2px;
+            display: block;
+            position: relative;
+            top: 0;
+            font-size: 14px;
+            color: @color_context;
+            word-break: break-all;
+          }
+          > .problem-month {
+            display: block;
+            position: relative;
+            font-size: 12px;
+            color: @color_title;
+          }
+        }
+        > .problem-item {
+          border-radius: 0.3rem;
+          position: relative;
+          overflow: hidden;
+          height: 11.5rem;
+          width: 100%;
+          > .wait-open{
+            position: absolute;
+            text-align: center;
+            right: 0;
+            top: 0;
+            width: 5.0rem;
+            height: 2.2rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            line-height: 2.2rem;
+            &.major{
+              background-image: linear-gradient(-270deg, #FFA617 11%, #FFB737 100%);
+              border-radius: 0 8px 0 0;
+              color: #C85D06;
+            }
+            &.minor{
+              background-image: linear-gradient(-270deg, #258eff 11%, #529aff 100%);
+              border-radius: 0 8px 0 0;
+              color: #0657c8;
+            }
+          }
+          > .problem-item-backcolor {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            &.major {
+              background-image: linear-gradient(-45deg, #FFC701 0%, #FF983F 100%);
+              border-radius: 8px;
+            }
+            &.minor {
+              background-image: linear-gradient(-45deg, #35B0EA 0%, #0063F8 100%);
+              border-radius: 8px;
+            }
+          }
+          > .problem-item-abbreviation {
+            color: @color_white;
+            position: relative;
+            font-size: 1.9rem;
+            line-height: 100%;
+            margin-top: 1.6rem;
+            padding: 0 1.5rem;
+            font-weight: bold;
+          }
+          > .problem-item-title {
+            color: @color_white;
+            font-size: 1.3rem;
+            line-height: 1.6rem;
+            margin-top: .9rem;
+            min-height: 3.2rem;
+            position: relative;
+            padding: 0 1.5rem;
+            font-weight: bold;
+          }
+          > .problem-item-deadline {
+            margin-top: 1.0rem;
+            color: @color_white;
+            position: relative;
+            padding: 0 1.5rem;
+            opacity: 0.9;
+            font-size: 1.1rem;
+            line-height: 1.3rem;
+          }
+          >.problem-pic{
+            position: absolute;
+            bottom:0;
+            right:0;
+            height: 11.5rem;
+            width: 11.5rem;
+            background: url('https://static.iqycamp.com/images/problem_pic.png') center center/11.5rem 11.5rem no-repeat;
+          }
+        }
+      }
+    }
+
+    > .card-title {
+      margin-top: 2.5rem;
+      height: 1.8rem;
+      line-height: 1.8rem;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      font-weight: bold;
+      > .card-topic {
+        display: inline-block;
+        font-size: 1.8rem;
+        line-height: 1.8rem;
+        color: #000;
+        position: absolute;
+      }
+    }
+
+    > .complete-course-container {
+      width: ~"calc(100% - 0.2rem)";
+      display: inline-block;
+      > .complete-plan {
+        height: 7.5rem;
+        background: #FFFFFF;
+        margin-bottom: 2.0rem;
+        position: relative;
+        > .status-line{
+          height: 9.5rem;
+          position: absolute;
+          width: 0.2rem;
+          margin-left: 0.8rem;
+          background: #f0f0f0;
+        }
+        > .plan-status {
+          display: inline-block;
+          position: absolute;
+          border-radius: 1.8rem;
+          width: 1.8rem;
+          height: 1.8rem;
+          background: url('../../../../assets/img/plan_complete.png') center center/1.8rem 1.8rem no-repeat;
+        }
+        &:last-child {
+          > .status-line{
+            height: 0;
+          }
+        }
+        > .plan-detail{
+          display: inline-block;
+          margin-left: 2.7rem;
+          height: 7.5rem;
+          width: ~"calc(100% - 2.7rem)";
+          box-shadow: 0 2px 10px 0 rgba(0,0,0,0.08);
+          border-radius: 4px;
+          > .plan-title-above{
+            margin-left: 2.0rem;
+            color: #999;
+            position: relative;
+            height: 1.3rem;
+            top: 1.8rem;
+            > .plan-name {
+              font-size: 1.3rem;
+              display: inline-block;
+              position: absolute;
+            }
+            > .plan-close {
+              display: inline-block;
+              font-size: 1.2rem;
+              position: absolute;
+              right: 2.0rem;
+              z-index: 1;
+            }
+          }
+          > .plan-title-below{
+            margin-left: 2.0rem;
+            font-size: 1.5rem;
+            color: #333;
+            line-height: 100%;
+            top: 2.8rem;
+            position: relative;
+            font-weight: bold;
+            z-index:2;
+          }
+          > .plan-stamp{
+            width: 5.4rem;
+            height: 5.4rem;
+            position: absolute;
+            top: 1.1rem;
+            right: 1.0rem;
+            background: url('../../../../assets/img/plan_complete_stamp.png') center center/5.4rem 5.4rem no-repeat;
+          }
+        }
+
+      }
+    }
+  }
+}
