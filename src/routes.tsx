@@ -266,13 +266,16 @@ const RichTextView = Loadable({
   loader: () => import('./modules/other/richtext/RichTextView'),
   loading: Loading,
 })
-import { VideoCourse } from './modules/video/VideoCourse'
+const VideoCourse = Loadable({
+  loader: () => import('./modules/video/VideoCourse'),
+  loading: Loading,
+})
 
 const routes = (
   <Route>
     <Route path="/rise/static" component={Base} onChange={(before, after) => {
-      config(['chooseWXPay'])
-      if (after.location.state && after.location.state.pageScrollY) {
+      config([ 'chooseWXPay' ])
+      if(after.location.state && after.location.state.pageScrollY) {
         setTimeout(() => {
           window.scrollTo(0, after.location.state.pageScrollY)
         }, 1000)
