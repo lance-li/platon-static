@@ -84,4 +84,11 @@ router.get('/operation/letter/load', (req, res) => {
     }), Math.random() * 1000)
 })
 
+router.get('/rise/customer/global/notify', (req, res) => {
+  setTimeout(() =>
+      res.status(200).json({"msg":{"id":null,"profileId":null,"orderId":null,"memberTypeId":null,"openDate":null,
+        "expireDate":null,"expired":false,"addTime":null,"startTime":null,"endTime":null,"name":null,
+        "expiredInSevenDays":false,"showGlobalNotify":false},"code":200}), Math.random() * 1000)
+})
+
 module.exports = router

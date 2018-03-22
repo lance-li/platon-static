@@ -61,9 +61,7 @@ class SectionProgressHeader extends React.Component<SectionProgressHeaderProps, 
 
   goSeriesPage(index, dispatch) {
     const { progress } = this.state
-    console.log(this.state)
     const { planId, practicePlanId, practiceId, complete, type } = progress[index]
-    console.log('practicePlanId:' + practicePlanId)
     loadPracticePlan(practicePlanId).then(res => {
       const { code, msg } = res
       if(code === 200) {
