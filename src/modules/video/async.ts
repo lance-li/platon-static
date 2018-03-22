@@ -1,5 +1,5 @@
 import { pget } from "utils/request";
 
-export function loadVideoCourses() {
-  return pget(`/rise/video/course/load/all`)
+export function loadVideoCourse(id) {
+  return pget(`/rise/video/course/load/${id}`)
 }

@@ -11,3 +11,7 @@ export function loadPersonSchedulePlan(){
 export function createPlan(problemId) {
   return ppost(`/rise/plan/choose/problem/${problemId}`)
 }
+
+export function loadVideoCourses() {
+  return pget(`/rise/video/course/load/all`)
+}

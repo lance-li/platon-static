@@ -4,8 +4,9 @@ import { connect } from 'react-redux'
 import { startLoad, endLoad, alertMsg } from 'reduxutil/actions'
 import { CurrentPlanBar } from './components/CurrentPlanBar'
 import { CompletePlanBar } from './components/CompletePlanBar'
+import { VideoPlanBar } from './components/VideoPlanBar'
 import AssetImg from '../../../components/AssetImg'
-import { loadPersonSchedulePlan } from './async'
+import { loadPersonSchedulePlan, loadVideoCourses } from './async'
 import { mark } from '../../../utils/request'
 import { ToolBar } from '../../base/ToolBar'
 import { ColumnSpan } from '../../../components/ColumnSpan'
@@ -15,12 +16,14 @@ import { MarkBlock } from '../../../components/markblock/MarkBlock'
 @connect(state => state)
 export default class SchedulePlan extends React.Component {
 
-  constructor () {
+  constructor() {
     super()
     this.state = {
-      data: {
-        showAllRunningPlan: false, sliceRunningPlans: [],
-      },
+      showAllRunningPlan: false,
+      sliceRunningPlans: [],
+      showAllVideo: false,
+      videoList: [],
+      data: {},
     }
   }
 
@@ -28,42 +31,58 @@ export default class SchedulePlan extends React.Component {
     router: React.PropTypes.object.isRequired,
   }
 
-  async componentWillMount () {
+  async componentWillMount() {
     mark({
       module: '打点', function: '学习', action: '打开学习计划页面',
     })
     const { dispatch, location } = this.props
     dispatch(startLoad())
     let res = await loadPersonSchedulePlan()
-    dispatch(endLoad())
-    if (res.code == 200) {
+
+    if(res.code == 200) {
       this.setState({ data: res.msg })
     } else {
       dispatch(alertMsg(res.msg))
     }
+    res = await loadVideoCourses()
+    if(res.code == 200) {
+      this.setState({ videoList: res.msg })
+    } else {
+      dispatch(alertMsg(res.msg))
+    }
+    dispatch(endLoad())
   }
 
-  handleGoPersonalCenter () {
+  handleGoPersonalCenter() {
     this.context.router.push('/rise/static/customer/personal')
   }
 
-  handleClickCourse (planId) {
+  handleClickCourse(planId) {
     this.context.router.push({ pathname: '/rise/static/plan/study', query: { planId: planId } })
   }
 
-  handleGoOverView () {
+  handleGoOverView() {
     this.context.router.push('/rise/static/course/schedule/overview')
   }
 
-  render () {
-    let { showAllRunningPlan, sliceRunningPlans } = this.state
-    let { announce, completePlans = [], runningPlans = [], joinDays = 0, loginCount = 0, totalPoint = 0, hasCourseSchedule = true } = this.state.data
+  render() {
+    let { showAllRunningPlan, sliceRunningPlans = [], showAllVideo, videoList = [], data } = this.state
+    let { announce, completePlans = [], runningPlans = [], joinDays = 0, loginCount = 0, totalPoint = 0, hasCourseSchedule = true } = data
 
     const renderRunningPlans = () => {
       sliceRunningPlans = !showAllRunningPlan ? runningPlans.slice(0, 3) : runningPlans
       return (
         <div className="plan-bar-box">
           {sliceRunningPlans.map((plan, index) => <CurrentPlanBar key={index} plan={plan}/>)}
+        </div>
+      )
+    }
+
+    const renderVideoPlans = () => {
+      videoList = !showAllVideo ? videoList.slice(0, 3) : videoList
+      return (
+        <div className="plan-bar-box">
+          {videoList.map((video, index) => <VideoPlanBar key={index} video={video}/>)}
         </div>
       )
     }
@@ -126,12 +145,27 @@ export default class SchedulePlan extends React.Component {
           }
           {renderRunningPlans()}
           {
+            videoList.length > 0 && !showAllVideo ?
+              videoList.length > 3 ?
+                <div className="more" onClick={() => this.setState({ showAllVideo: true })}>
+                  更多&nbsp;
+                  <FontAwesome name="angle-right"/>
+                </div> :
+                <div></div> :
+              <div className="more" onClick={() => this.setState({ showAllVideo: false })}>
+                收起&nbsp;
+                <FontAwesome name="angle-down"/>
+              </div>
+          }
+          {
             hasCourseSchedule &&
             <span className="view-course-schedule" onClick={() => this.handleGoOverView()}>
               查看我的学习计划&nbsp;
               <FontAwesome name="angle-right"/>
             </span>
           }
+          <div className="title" style={{marginTop: '2.0rem'}}>视频课</div>
+          {renderVideoPlans()}
         </div>
         {
           completePlans.length > 0 &&

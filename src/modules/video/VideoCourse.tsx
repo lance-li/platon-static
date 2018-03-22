@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './VideoCourse.less';
 import classNames from 'classnames';
 import { unScrollToBorder } from '../../utils/helpers'
-import { loadVideoCourses } from './async'
+import { loadVideoCourse } from './async'
 import { startLoad, endLoad, alertMsg } from 'reduxutil/actions'
 import _ from "lodash"
 
@@ -20,7 +20,8 @@ export default class VideoCourse extends React.Component<any, any> {
   }
 
   async componentWillMount() {
-    let res = await loadVideoCourses()
+    const { id } = this.props.location.query
+    let res = await loadVideoCourse(id)
     const { msg, code } = res
     if(code === 200) {
       const { videoList } = msg
@@ -37,15 +38,20 @@ export default class VideoCourse extends React.Component<any, any> {
     const { dispatch } = this.props
     const { data } = this.state
     const { videoList = [] } = data
-    if(video.play) {
-      dispatch(alertMsg('视频已在播放中'))
-      return
-    }
 
-    for(let v in videoList) {
+    for(let i=0;i<videoList.length;i++) {
+      let v = videoList[i]
       if(v.id === video.id) {
-        _.set(v, 'play', true)
+        let playStatus = v.play
+        _.set(videoList[i], 'play', !playStatus)
         this.setState({ data, playVideo: video.url, playPoster: video.picUrl })
+        //控制播放器
+        if(playStatus) {
+          this.refs.videoCourse.pause()
+        } else {
+          this.refs.videoCourse.play()
+        }
+        break
       }
     }
 
@@ -53,14 +59,16 @@ export default class VideoCourse extends React.Component<any, any> {
 
   render() {
     const { navActive, playVideo, playPoster, data } = this.state
-    const { title, videoList, courseIntro, teacherIntro } = data
+    const { title, videoList = [], courseIntro, lecturerIntro } = data
 
     const renderPlayVideo = () => {
-      return videoList.map((video) => {
+      return videoList.map((video, index) => {
         return (
-          <li className={classNames('course-content', { 'play': video.play, 'pause': !video.play })}
+          <li key={index} className={classNames('course-item', { 'play': video.play, 'pause': !video.play })}
               onClick={()=>this.play(video)}>
-            {video.name}
+            <div className="course-item-text">
+              {video.name}
+            </div>
           </li>
         )
       })
@@ -72,7 +80,7 @@ export default class VideoCourse extends React.Component<any, any> {
           <div className="video-area">
             <video src={playVideo}
                    controls="controls"
-                   poster={playPoster}>
+                   poster={playPoster} ref="videoCourse">
             </video>
           </div>
           <div className="course-nav-list">
@@ -104,28 +112,20 @@ export default class VideoCourse extends React.Component<any, any> {
 
               <div className={classNames('course-content', { 'active': navActive === 2 })}>
                 <div className="course-content-body course-detail">
-                  {/*<div className="detail-wrapper">*/}
-                  {/*<div className="detail-topic">*/}
-                  {/*适合人群*/}
-                  {/*</div>*/}
-                  {/*<div className="detail-text">*/}
-                  {/*{people}*/}
-                  {/*</div>*/}
-                  {/*</div>*/}
+                  <div className="detail-wrapper">
+                    <div className="detail-topic">
+                      讲师介绍
+                    </div>
+                    <div className="detail-text">
+                      {lecturerIntro}
+                    </div>
+                  </div>
                   <div className="detail-wrapper">
                     <div className="detail-topic">
                       课程介绍
                     </div>
                     <div className="detail-text">
                       {courseIntro}
-                    </div>
-                  </div>
-                  <div className="detail-wrapper">
-                    <div className="detail-topic">
-                      讲师介绍
-                    </div>
-                    <div className="detail-text">
-                      {teacherIntro}
                     </div>
                   </div>
                 </div>
