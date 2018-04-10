@@ -488,7 +488,7 @@ export default class Application extends React.Component <any, any> {
           </div>
           <ColumnSpan height={15}
                       style={{ margin: '2rem -2.5rem 0' }}/>
-          <ApplicationDiscussDistrict key={randomStr(12)}
+          <ApplicationDiscussDistrict key={id}
                                       data={commentsData}
                                       clickFunc={() => this.handleClickGoSubmitPage()}/>
         </div>
