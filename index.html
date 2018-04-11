@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link href="//imgcache.qq.com/open/qcloud/video/tcplayer/tcplayer.css" rel="stylesheet">
 </head>
 <body>
 <script>
@@ -11,12 +12,16 @@
     reactMountPoint: 'react-app', userName: '薛定谔的猫', headImgUrl: 'http://wx.qlogo.cn/mmopen/ajNVdqHZLLCSiaNK8DicWOORkbRj8h0ljRpVIlTuXRICSzZGNEvTwia25F2TibAzDLs7GU6Q2IgZ8dxTxiag0HLNLGsVt4ouddBMfTvV4L3M72xE/0', showForum: 'false', showExplore: 'false', configUrl: window.location.href,
   }
 </script>
+<script src="//imgcache.qq.com/open/qcloud/video/tcplayer/tcplayer.min.js"></script>
+
 
 <div id="react-app"></div>
+<video id="player-container-id" preload="auto" width="300px"  playsinline></video>
 
 <!-- 业务代码-->
 <script src="/app.bundle.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
 <script type="text/javascript">
   (function(m, ei, q, i, a, j, s) {
     m[i] = m[i] || function() {
@@ -57,6 +62,14 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
          佛祖保佑              永无BUG
   `)
+</script>
+<script>
+  var player = TCPlayer("player-container-id", { // player-container-id 为播放器容器ID，必须与html中一致
+    fileID: "7447398155433128311", // 请传入需要播放的视频filID 必须
+    appID: "1256461921", // 请传入点播账号的appID 必须
+    autoplay: false //是否自动播放
+    //其他参数请在开发文档中查看
+  });
 </script>
 </body>
 </html>

@@ -14,6 +14,12 @@ import DiscussDistrict from './modules/practice/components/DiscussDistrict/Discu
 import CommentSubmit from './modules/practice/common/CommentSubmit/CommentSubmit'
 import ApplicationSubmit from './modules/practice/common/ApplicationSubmit/ApplicationSubmit'
 
+const TestVideo = Loadable({
+  loader: ()=> import('./modules/test/TestVideo'),
+  loading:Loading,
+})
+
+
 const LangdingPage = Loadable({
   loader: () => import('./modules/home/LandingPage'),
   loading: Loading,
@@ -329,6 +335,7 @@ const routes = (
       <Route path="home/lives" component={LiveListPage}/>
       <Route path="home/activities" component={ActivityListPage}/>
       <Route path="home/problem" component={ProblemDesc}/>
+      <Route path="test/video" component={TestVideo} />
 
       <Route path="rise" component={SchedulePlan}/>
       <Route path="camp" component={SchedulePlan}/>
