@@ -19,12 +19,16 @@ export default class DiscussTopBar extends React.Component<DiscussTopBarProps, a
     let node = this.refs.discussTopBar
     this.autoFixedTimer = setInterval(() => {
       let rect = node.getBoundingClientRect()
-      if (rect.top < 0) {
+      if (rect.top <= 0) {
         node.classList.add('fixed')
       } else {
         node.classList.remove('fixed')
       }
-    }, 500)
+    }, 100)
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.autoFixedTimer)
   }
 
   render () {
